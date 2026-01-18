@@ -370,52 +370,8 @@ function initCartOptionsListeners() {
             message += `Total: ${cartTotalElement.textContent}\n`;
             message += `Método de pagamento: ${cartOptions.paymentMethod}\n`;
             message += `${cartOptions.fulfillment === 'entrega' ? ('Entrega — ' + (cartOptions.deliveryAddress || 'Endereço não informado')) : 'Retirada no local'}\n`;
-
-            // Captura a imagem do carrinho
-            try {
-                const cartElement = document.querySelector('.cart-sidebar');
-                if (cartElement && window.html2canvas) {
-                    const canvas = await html2canvas(cartElement, { 
-                        backgroundColor: '#ffffff',
-                        scale: 2,
-                        useCORS: true
-                    });
-                    const cartImageData = canvas.toDataURL('image/png');
-                    
-                    // Abrir popup com a imagem capturada
-                    const popupWindow = window.open('', 'cartScreenshot', 'width=400,height=600');
-                    popupWindow.document.write(`
-                        <html>
-                        <head>
-                            <title>Imagem do Carrinho</title>
-                            <style>
-                                body { font-family: Arial, sans-serif; padding: 20px; text-align: center; background: #f5f5f5; }
-                                img { max-width: 100%; border-radius: 8px; margin-bottom: 20px; }
-                                button { background: #25D366; color: white; border: none; padding: 12px 24px; border-radius: 6px; cursor: pointer; font-size: 16px; margin: 5px; }
-                                button:hover { background: #1fa857; }
-                                a { background: #0084ff; color: white; padding: 12px 24px; border-radius: 6px; cursor: pointer; text-decoration: none; display: inline-block; margin: 5px; }
-                                a:hover { background: #0073e6; }
-                            </style>
-                        </head>
-                        <body>
-                            <h2>📸 Imagem do seu Carrinho</h2>
-                            <img src="${cartImageData}" alt="Carrinho" />
-                            <p>Clique no botão abaixo para enviar via WhatsApp:</p>
-                            <button onclick="parent.window.open('https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent('Olá! Enviando meu pedido com screenshot...')}', '_blank'); window.close();">
-                                📱 Abrir WhatsApp
-                            </button>
-                            <a href="${cartImageData}" download="carrinho.png">⬇️ Baixar Imagem</a>
-                        </body>
-                        </html>
-                    `);
-                    popupWindow.document.close();
-                }
-            } catch (error) {
-                console.warn('Não foi possível capturar a imagem do carrinho:', error);
-            }
-
             const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
-            window.open(url, '_blank');
+            window.location.href = url;
         });
     }
 }
