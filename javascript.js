@@ -363,19 +363,25 @@ function initCartOptionsListeners() {
                 return;
             }
 
-            let message = 'FAVOR ENVIAR PRINT DO PRODUTO SOLICITADO!!!, Olá gostaria de fazer um pedido:';
-            cart.forEach(item => {
-                message += `${item.name} x ${item.quantity} - R$ ${ (item.price * item.quantity).toFixed(2).replace('.', ',')}\n`;
-            });
-            message += `Total: ${cartTotalElement.textContent}\n`;
-            message += `Método de pagamento: ${cartOptions.paymentMethod}\n`;
-            message += `${cartOptions.fulfillment === 'entrega' ? ('Entrega — ' + (cartOptions.deliveryAddress || 'Endereço não informado')) : 'Retirada no local'}\n`;
-            const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
-            window.location.href = url;
-        });
-    }
-}
+           // 1. Garanta que o número tenha APENAS dígitos (remove +, - e espaços)
+const cleanNumber = WHATSAPP_NUMBER.replace(/\D/g, '');
 
+let message = 'FAVOR ENVIAR PRINT DO PRODUTO SOLICITADO!!!\n\nOlá, gostaria de fazer um pedido:\n';
+
+cart.forEach(item => {
+    // Usando template string e garantindo a quebra de linha
+    message += `${item.name} x ${item.quantity} - R$ ${(item.price * item.quantity).toFixed(2).replace('.', ',')}\n`;
+});
+
+message += `\nTotal: ${cartTotalElement.textContent}\n`;
+message += `Método de pagamento: ${cartOptions.paymentMethod}\n`;
+message += `${cartOptions.fulfillment === 'entrega' ? ('Entrega — ' + (cartOptions.deliveryAddress || 'Endereço não informado')) : 'Retirada no local'}`;
+
+// 2. Criar a URL usando o número limpo
+const url = `https://wa.me/${cleanNumber}?text=${encodeURIComponent(message)}`;
+
+// 3. Redirecionar
+window.location.href = url;
 // 4. Inicializa: Carrega os dados e tenta renderizar se estiver na página correta
 document.addEventListener('DOMContentLoaded', () => {
     loadCart(); // Carrega o carrinho em AMBAS as páginas
