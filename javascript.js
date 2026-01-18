@@ -128,27 +128,38 @@ function sendWhatsApp() {
         return;
     }
     
+    // Limpeza rigorosa do número para mobile
+    const cleanNumber = WHATSAPP_NUMBER.toString().replace(/\D/g, '');
+
     let message = 'FAVOR ENVIAR PRINT DO PRODUTO SOLICITADO!!!\n\nOlá, gostaria de fazer um pedido:\n';
+    
     cart.forEach(item => {
         message += `• ${item.name} (x${item.quantity}) - R$ ${(item.price * item.quantity).toFixed(2).replace('.', ',')}\n`;
     });
+    
     message += `\nTotal: ${cartTotalElement.textContent}\n`;
     message += `Pagamento: ${cartOptions.paymentMethod}\n`;
     message += `${cartOptions.fulfillment === 'entrega' ? ('Entrega: ' + (cartOptions.deliveryAddress || 'Não informado')) : 'Retirada no local'}`;
 
-    const cleanNumber = WHATSAPP_NUMBER.replace(/\D/g, '');
-    window.location.href = `https://wa.me/${cleanNumber}?text=${encodeURIComponent(message)}`;
+    // Construção segura da URL
+    const url = "https://wa.me/" + cleanNumber + "?text=" + encodeURIComponent(message);
+
+    // Redirecionamento compatível com Celular e Desktop
+    window.location.assign(url);
 }
 
 // Vinculando o botão de WhatsApp do carrinho
 if (whatsappButton) {
-    whatsappButton.addEventListener('click', sendWhatsApp);
+    whatsappButton.addEventListener('click', function(e) {
+        e.preventDefault();
+        sendWhatsApp();
+    });
 }
 
 // --- Outros Eventos ---
 
 if (cartIcon && cartContainer && closeCartBtn) {
-    cartIcon.onclick = () => cartContainer.classList.add('open');
+    cartIcon.onclick = (e) => { e.preventDefault(); cartContainer.classList.add('open'); };
     closeCartBtn.onclick = () => cartContainer.classList.remove('open');
 }
 
