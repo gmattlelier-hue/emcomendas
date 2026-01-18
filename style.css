@@ -1,0 +1,703 @@
+/* Importação de Fontes do Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&family=Playfair+Display:wght@700&display=swap');
+
+/* Reset Básico */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Cores da Marca (Variaveis globais) */
+:root {
+    --primary-color: #F5F5DC; /* Seu bege principal */
+    --secondary-color: #1a1a1a; /* Preto quase puro para contrastar */
+    --text-dark: #333;
+    --text-light: #fefefe;
+    --accent-gold: #c6a066; /* Um toque de dourado para detalhes */
+    
+    /* Variaveis da Loja */
+    --store-primary-color: #000000;
+    --store-secondary-color: #f5f5f5;
+    --store-accent-color: #ff4500; /* Cor de destaque (Laranja) */
+    --store-text-color: #333333;
+    --store-card-bg: #ffffff;
+}
+
+body {
+    font-family: 'Montserrat', sans-serif; 
+    line-height: 1.6;
+    color: var(--text-dark);
+    background: linear-gradient(135deg, #ffffff 0%, #e8e8e8 50%, #d3d3d3 100%);
+    min-height: 100vh;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+ul {
+    list-style: none;
+}
+
+/* --------------------------------- */
+/* ESTILOS DA INTERFACE PRINCIPAL */
+/* --------------------------------- */
+
+/* Header */
+.main-header {
+    background-color: var(--secondary-color);
+    padding: 15px 5%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.logo-container .logo {
+    max-width: 180px;
+    height: 180px; 
+    width: 180px;
+    border-radius: 50%;
+    object-fit: contain;
+    background-color: var(--secondary-color);
+    padding: 5px; 
+}
+
+.main-nav ul {
+    display: flex;
+    gap: 30px; 
+}
+
+.main-nav a {
+    color: var(--text-light);
+    font-weight: 600;
+    font-size: 1.0em;
+    padding: 5px 0;
+    transition: color 0.3s ease;
+}
+
+.main-nav a:hover {
+    color: var(--accent-gold);
+}
+
+.header-icons {
+    display: flex;
+    gap: 20px;
+}
+
+.header-icons .icon {
+    color: var(--text-light);
+    font-size: 24px;
+    transition: color 0.3s ease;
+}
+
+/* Esconder ícone de busca e perfil */
+.header-icons .icon[aria-label="Busca"],
+.header-icons .icon[aria-label="Usuário"] {
+    display: none;
+}
+
+/* Ícone do Carrinho no Header */
+.header-icons .icon#cart-icon {
+    position: relative;
+    display: inline-block;
+}
+
+.header-icons #cart-count {
+    position: absolute;
+    top: -5px;
+    right: -10px;
+    background-color: var(--store-accent-color); /* Laranja */
+    color: var(--text-light);
+    border-radius: 50%;
+    padding: 2px 6px;
+    font-size: 12px;
+    min-width: 18px;
+    text-align: center;
+    font-weight: bold;
+    line-height: 1.2;
+}
+
+/* Hero Section */
+.hero-section {
+    background-image: url('IMG/Fundo.png');
+    background-size: cover;
+    background-position: center;
+    height: 80vh; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: var(--text-light);
+    position: relative; 
+}
+
+.hero-section::before { 
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.4); 
+}
+
+.hero-content {
+    position: relative; 
+    z-index: 1;
+    max-width: 800px;
+    padding: 20px;
+}
+
+.hero-content h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 3.5em;
+    margin-bottom: 20px;
+    line-height: 1.2;
+}
+
+.hero-content p {
+    font-size: 1.3em;
+    margin-bottom: 30px;
+}
+
+.btn-primary {
+    background-color: var(--primary-color);
+    color: var(--secondary-color);
+    padding: 15px 30px;
+    border-radius: 5px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.btn-primary:hover {
+    background-color: var(--accent-gold);
+    color: var(--text-light);
+}
+
+/* ----- Cart payment area (matches store look) ----- */
+.cart-payment-area {
+    background-color: var(--store-card-bg);
+    border: 1px solid rgba(0,0,0,0.06);
+    border-radius: 8px;
+    padding: 12px;
+    margin: 10px 0 14px;
+    color: var(--store-text-color);
+}
+.cart-payment-area h4 {
+    margin: 0 0 8px 0;
+    font-size: 0.95rem;
+    color: var(--store-primary-color);
+}
+.cart-payment-area label {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-right: 14px;
+    font-size: 0.95rem;
+    color: var(--store-text-color);
+}
+.cart-payment-area input[type="radio"] {
+    accent-color: var(--store-accent-color);
+}
+.cart-payment-area input[type="text"] {
+    width: 100%;
+    padding: 8px 10px;
+    border: 1px solid rgba(0,0,0,0.08);
+    border-radius: 6px;
+    font-size: 0.95rem;
+}
+
+/* WhatsApp checkout button (styled to blend with the site) */
+.btn-whatsapp {
+    background-color: #25D366; /* WhatsApp green */
+    color: #fff;
+    border: none;
+}
+.btn-whatsapp:hover {
+    filter: brightness(0.95);
+}
+
+/* Footer */
+.main-footer {
+    background-color: var(--secondary-color);
+    color: var(--text-light);
+    text-align: center;
+    padding: 30px 5%;
+    font-size: 0.9em;
+}
+
+.main-footer .social-links a {
+    color: var(--text-light);
+    margin: 0 10px;
+    transition: color 0.3s ease;
+}
+
+.main-footer .social-links a:hover {
+    color: var(--accent-gold);
+}
+
+/* Responsividade Principal */
+@media (max-width: 768px) {
+    .main-nav {
+        display: none; 
+    }
+
+    .main-header {
+        justify-content: center; 
+        flex-wrap: wrap; 
+    }
+    .header-icons {
+        margin-top: 10px;
+    }
+
+    .hero-content h1 {
+        font-size: 2.5em;
+    }
+    .hero-content p {
+        font-size: 1em;
+    }
+}
+
+/* --------------------------------- */
+/* ESTILOS DA LOJA (PREFIXO STORE-) */
+/* --------------------------------- */
+
+.store-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.store-header-camisa {
+    background-color: var(--store-primary-color);
+    color: white;
+    padding: 15px 0;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.store-header-camisa h1 {
+    font-size: 1.8rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+}
+
+/* --- Seções de Produtos --- */
+.store-product-category {
+    margin-bottom: 40px;
+    padding: 20px;
+    background: linear-gradient(135deg, #f5f5f5 0%, #e8e8e8 100%);
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.store-product-category h2 {
+    font-size: 1.6rem;
+    color: var(--store-primary-color);
+    border-bottom: 2px solid var(--store-accent-color);
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+}
+
+/* --- Grid de Produtos --- */
+.store-product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 25px;
+}
+
+/* --- Card de Produto (CORREÇÃO DE ALINHAMENTO APLICADA) --- */
+.store-product-card {
+    background: linear-gradient(135deg, #ffffff 0%, #f5f5f5 100%);
+    border-radius: 8px;
+    padding: 15px;
+    text-align: center;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s ease;
+    /* 1. NOVO: Flexbox para alinhamento vertical */
+    display: flex; 
+    flex-direction: column;
+    height: 100%; 
+}
+
+.store-product-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+}
+
+.store-product-image {
+    width: 100%;
+    height: 200px;
+    background-color: #cccccc; 
+    border-radius: 6px;
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 0.8rem;
+    font-weight: bold;
+    /* Para a imagem real caber, use object-fit: cover/contain conforme necessário */
+    object-fit: contain; 
+}
+
+/* Identificação dos placeholders (ID CORRIGIDO) */
+#store-oversized .store-product-image::after { content: "IMAGEM OVERSIZE"; } /* CORRIGIDO DE oversatils */
+#store-shorts .store-product-image::after { content: "IMAGEM SHORTS"; }
+#store-peruana .store-product-image::after { content: "IMAGEM PERUANA"; }
+
+.store-product-name {
+    font-size: 1.1rem;
+    margin-bottom: 5px;
+    color: var(--store-primary-color);
+}
+/* ... (seu código CSS anterior) ... */
+
+.store-product-image {
+    width: 100%;
+    height: 200px;
+    /* REMOVIDO: background-color: #cccccc; */ /* Não precisamos mais do fundo cinza com object-fit: cover */
+    border-radius: 6px;
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white; /* Manter se o placeholder for eventualmente necessário */
+    font-size: 0.8rem; /* Manter se o placeholder for eventualmente necessário */
+    font-weight: bold; /* Manter se o placeholder for eventualmente necessário */
+    
+    /* CORREÇÃO AQUI: */
+    object-fit: cover; /* Faz a imagem preencher todo o espaço, cortando o que não couber */
+    overflow: hidden; /* Garante que qualquer parte da imagem que exceda a div seja cortada */
+}
+
+/* ... (o resto do seu código CSS) ... */
+
+.store-product-description {
+    font-size: 0.85rem;
+    color: #666;
+    margin-bottom: 10px;
+}
+
+.store-product-price {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: var(--store-accent-color);
+    margin-bottom: 15px;
+    margin-top: auto; /* Empurra o preço e o botão para o fundo do card */
+    font-family: 'Playfair Display', serif; /* Fonte elegante */
+}
+
+.store-btn-buy {
+    display: inline-block;
+    width: 90%;
+    padding: 10px 0;
+    background-color: var(--store-primary-color);
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.2s;
+}
+
+.store-btn-buy:hover {
+    background-color: #333333;
+}
+
+/* Estilos para o rodapé */
+.store-footer {
+    text-align: center;
+    padding: 20px 0;
+    margin-top: 50px;
+    background-color: var(--store-primary-color);
+    color: #cccccc;
+    font-size: 0.8rem;
+}
+
+/* Responsividade básica */
+@media (max-width: 600px) {
+    .store-product-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .cart-sidebar {
+        width: 100%;
+    }
+
+    .cart-item-image {
+        width: 60px;
+        height: 60px;
+    }
+
+    .item-name {
+        font-size: 0.85rem;
+    }
+}
+
+/* 1. Esconder o carrinho por padrão */
+.cart-sidebar {
+    /* Posicionamento fixo na lateral direita */
+    position: fixed;
+    top: 0;
+    right: 0; 
+    width: 350px; /* Largura da barra */
+    height: 100%;
+    background-color: #f8f8f8;
+    box-shadow: -2px 0 5px rgba(0, 0, 0, 0.5);
+    z-index: 1000; /* Garante que fique acima de tudo */
+    
+    /* Esta linha esconde o carrinho fora da tela */
+    transform: translateX(100%); 
+    transition: transform 0.3s ease-in-out; /* Transição suave */
+
+    /* Garante scroll se o conteúdo for grande */
+    overflow-y: auto; 
+}
+
+/* 2. Regra para ABRIR o carrinho (adicionada pelo JS) */
+.cart-sidebar.open {
+    /* Move o carrinho para a posição visível */
+    transform: translateX(0);
+}
+/* Cart styling - ensure the cart matches the store theme */
+.cart-header {
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:10px 0;
+    border-bottom:1px solid rgba(0,0,0,0.06);
+}
+.cart-header h3 { font-family:'Playfair Display', serif; font-size:1.2rem; color:var(--secondary-color); }
+.cart-header #close-cart-btn { background:none; border:none; font-size:1rem; cursor:pointer; color:var(--text-dark); }
+.cart-header #close-cart-btn:hover { color:var(--store-accent-color); }
+.cart-items { padding: 10px; }
+.cart-item { display: flex; gap: 12px; align-items: center; padding: 10px; border-radius: 6px; background: var(--store-card-bg); margin-bottom: 8px; }
+.cart-item-image { width: 70px; height: 70px; object-fit: cover; border-radius: 4px; flex-shrink: 0; }
+.cart-item-details { flex: 1; display: flex; flex-direction: column; gap: 6px; }
+.item-name { font-size:0.95rem; font-weight:600; color:var(--store-primary-color); }
+.item-controls { display: flex; gap: 6px; align-items: center; justify-content: flex-start; }
+.item-quantity { min-width: 24px; text-align:center; font-weight:700; }
+.quantity-btn { background-color: var(--store-accent-color); color: var(--text-light); border:none; border-radius:50%; width:28px; height:28px; cursor:pointer; }
+.quantity-btn:hover { filter:brightness(0.92); }
+.item-price { text-align: left; font-weight: 700; color: var(--store-accent-color); font-size: 0.9rem; }
+.cart-footer { border-top:1px solid rgba(0,0,0,0.06); padding-top:12px; }
+.btn-checkout { background-color:var(--secondary-color); color:var(--text-light); border:none; padding:10px 16px; border-radius:6px; cursor:pointer; width:100%; font-weight:600; }
+.btn-checkout:hover { background-color:var(--store-accent-color); color:#fff; }
+
+/* Importação de Fontes do Google Fonts */
+/* Playfair Display para títulos (serifada, elegante) */
+/* Montserrat para corpo do texto (sans-serif, moderna) */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&family=Playfair+Display:wght@700&display=swap');
+
+/* Reset Básico */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Cores da Marca (Variaveis globais) */
+:root {
+    --primary-color: #F5F5DC; /* Seu bege principal */
+    --secondary-color: #1a1a1a; /* Preto quase puro para contrastar */
+    --text-dark: #333;
+    --text-light: #fefefe;
+    --accent-gold: #c6a066; /* Um toque de dourado para detalhes */
+    
+    /* Variaveis da Loja */
+    --store-primary-color: #000000;
+    --store-secondary-color: #f5f5f5;
+    --store-accent-color: #ff4500; /* Cor de destaque (Laranja) */
+    --store-text-color: #333333;
+    --store-card-bg: #ffffff;
+}
+
+body {
+    font-family: 'Montserrat', sans-serif; 
+    line-height: 1.6;
+    color: var(--text-dark);
+    background-color: #f8f8f8;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+ul {
+    list-style: none;
+}
+
+/* --------------------------------- */
+/* ESTILOS DA INTERFACE PRINCIPAL */
+/* --------------------------------- */
+
+/* Header */
+.main-header {
+    background-color: var(--secondary-color);
+    padding: 15px 5%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.logo-container .logo {
+    max-width: 180px;
+    height: 180px; 
+    width: 180px;
+    border-radius: 50%;
+    object-fit: contain;
+    background-color: var(--secondary-color);
+    padding: 5px; 
+}
+
+.main-nav ul {
+    display: flex;
+    gap: 30px; 
+}
+
+.main-nav a {
+    color: var(--text-light);
+    font-weight: 600;
+    font-size: 1.0em;
+    padding: 5px 0;
+    transition: color 0.3s ease;
+}
+
+.main-nav a:hover {
+    color: var(--accent-gold);
+}
+
+.header-icons {
+    display: flex;
+    gap: 20px;
+}
+
+.header-icons .icon {
+    color: var(--text-light);
+    font-size: 24px;
+    transition: color 0.3s ease;
+}
+
+/* Hero Section */
+.hero-section {
+    background-image: url('IMG/Fundo.png');
+    background-size: cover;
+    background-position: center;
+    height: 80vh; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: var(--text-light);
+    position: relative; 
+}
+
+.hero-section::before { 
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.4); 
+}
+
+.hero-content {
+    position: relative; 
+    z-index: 1;
+    max-width: 800px;
+    padding: 20px;
+}
+
+.hero-content h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 3.5em;
+    margin-bottom: 20px;
+    line-height: 1.2;
+}
+
+.hero-content p {
+    font-size: 1.3em;
+    margin-bottom: 30px;
+}
+
+.btn-primary {
+    background-color: var(--primary-color);
+    color: var(--secondary-color);
+    padding: 15px 30px;
+    border-radius: 5px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.btn-primary:hover {
+    background-color: var(--accent-gold);
+    color: var(--text-light);
+}
+
+/* Footer */
+.main-footer {
+    background-color: var(--secondary-color);
+    color: var(--text-light);
+    text-align: center;
+    padding: 30px 5%;
+    font-size: 0.9em;
+}
+
+.main-footer .social-links a {
+    color: var(--text-light);
+    margin: 0 10px;
+    transition: color 0.3s ease;
+}
+
+.main-footer .social-links a:hover {
+    color: var(--accent-gold);
+}
+
+/* Responsividade Principal */
+@media (max-width: 768px) {
+    .main-nav {
+        display: none; 
+    }
+
+    .main-header {
+        justify-content: center; 
+        flex-wrap: wrap; 
+    }
+    .header-icons {
+        margin-top: 10px;
+    }
+
+    .hero-content h1 {
+        font-size: 2.5em;
+    }
+    .hero-content p {
+        font-size: 1em;
+    }
+}
+
+/* Responsividade básica - Uma coluna a partir de 844px */
+@media (max-width: 844px) {
+    .store-product-grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+        padding: 0 12px;
+    }
+
+    .store-product-card {
+        width: 100%;
+        margin-bottom: 8px;
+    }
+
+    .store-product-image {
+        height: 200px;
+    }
+}
