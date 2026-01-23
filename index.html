@@ -5,7 +5,256 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Minha Loja de Roupas</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css"> 
+    <style>
+        /* Responsive product grid - Modern and sophisticated black & white catalog */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-image: url('IMG/Untitled Project (9).png');
+            background-size: 15%;
+            background-position: center;
+            background-repeat: repeat;
+            background-attachment: fixed;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        /* Titulo principal do catálogo */
+        .store-title {
+            text-align: center;
+            padding: 40px 20px 30px;
+            margin: 20px 0 40px 0;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.9) 0%, rgba(240, 240, 240, 0.9) 100%);
+            border-bottom: 3px solid #d4af37;
+        }
+
+        .store-title h1 {
+            font-size: 48px;
+            font-weight: 800;
+            background: linear-gradient(135deg, #d4af37 0%, #ffd700 50%, #d4af37 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 0 0 30px rgba(212, 175, 55, 0.3);
+            letter-spacing: 2px;
+            margin: 0;
+            text-transform: uppercase;
+            filter: drop-shadow(0 0 10px rgba(212, 175, 55, 0.2));
+        }
+
+        .store-title p {
+            color: #666;
+            font-size: 14px;
+            margin: 8px 0 0 0;
+            letter-spacing: 1px;
+        }
+
+        .store-product-category {
+            background-image: url('IMG/Untitled Project (9).png');
+            background-size: 20%;
+            background-position: center;
+            background-repeat: repeat;
+            background-attachment: fixed;
+            padding: 30px 0;
+            margin: 20px 0;
+            border-radius: 8px;
+        }
+
+        .store-product-category h2 {
+            text-align: center;
+            color: #ffffff;
+            font-size: 24px;
+            margin: 20px 0 30px 0;
+            position: relative;
+            padding-bottom: 15px;
+        }
+
+        .store-product-category h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 2px;
+            background: linear-gradient(to right, transparent, #d4af37, transparent);
+        }
+
+        /* Estilo do link Catálogo elegante e centralizado */
+        .main-nav {
+            text-align: center;
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .main-nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+        }
+
+        .main-nav a {
+            font-size: 28px;
+            font-weight: 300;
+            font-family: 'Playfair Display', 'Bodoni MT', serif;
+            color: #ffffff;
+            text-decoration: none;
+            letter-spacing: 3px;
+            transition: all 0.3s ease;
+        }
+
+        .main-nav a:hover {
+            font-weight: 400;
+            letter-spacing: 4px;
+        }
+
+        .store-product-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 24px;
+            padding: 0 16px 30px;
+        }
+
+        .store-product-card {
+            display: flex;
+            flex-direction: column;
+            align-items: stretch;
+            background: #fff;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .store-product-card:hover {
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+            border-color: #000;
+            transform: translateY(-4px);
+        }
+
+        .store-product-image {
+            width: 100%;
+            height: 280px;
+            object-fit: cover;
+            border-radius: 0;
+            background-color: #f5f5f5;
+        }
+
+        .store-product-name {
+            font-size: 16px;
+            font-weight: 600;
+            color: #000;
+            padding: 12px 12px 0;
+            margin-top: 12px;
+        }
+
+        .store-product-description {
+            font-size: 13px;
+            color: #666;
+            padding: 8px 12px 0;
+        }
+
+        .store-product-price {
+            font-size: 18px;
+            font-weight: 700;
+            color: #000;
+            padding: 12px;
+            margin-top: auto;
+        }
+
+        .store-btn-buy {
+            background-color: #000;
+            color: #fff;
+            border: none;
+            padding: 12px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            border-radius: 0;
+            margin: 0;
+        }
+
+        .store-btn-buy:hover {
+            background-color: #333;
+        }
+
+        /* Responsive - Tablet (3 columns) */
+        @media (max-width: 1024px) {
+            .store-product-grid {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 20px;
+                padding: 0 12px;
+            }
+
+            .store-product-image {
+                height: 240px;
+            }
+        }
+
+        /* Responsive - Tablet small (2 columns) */
+        @media (max-width: 768px) {
+            .store-product-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 16px;
+                padding: 0 12px;
+            }
+
+            .store-product-image {
+                height: 200px;
+            }
+
+            .store-product-name {
+                font-size: 14px;
+            }
+
+            .store-product-price {
+                font-size: 16px;
+            }
+        }
+
+        /* Responsive - Mobile (1 column) */
+        @media (max-width: 480px) {
+            .store-product-grid {
+                grid-template-columns: 1fr;
+                gap: 12px;
+                padding: 0 8px;
+            }
+
+            .store-product-image {
+                height: 180px;
+            }
+
+            .store-product-name {
+                font-size: 13px;
+            }
+
+            .store-product-description {
+                font-size: 12px;
+            }
+
+            .store-product-price {
+                font-size: 14px;
+            }
+
+            .store-btn-buy {
+                font-size: 12px;
+                padding: 10px;
+            }
+
+            .logo {
+                max-height: 40px;
+            }
+        }
+    </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
     </head>
 <body>
 
@@ -33,22 +282,550 @@
     <main class="store-container" id="colecao">
     
         <section class="store-product-category" id="store-oversized">
-            <h2>Camisas Oversized </h2>
+            <h2>Camisas Oversized (R$ 95,00)</h2>
             <div class="store-product-grid">
+                
+                <div class="store-product-card" data-product-id="over-01" data-product-price="95.00">
+                    <img src="IMG/Oversatil/Oversized1.jpeg" alt="Camiseta Oversized Premium" class="store-product-image">
+                    <h3 class="store-product-name">Camiseta Oversized Premium</h3>
+                    <p class="store-product-description">Estilo moderno e caimento perfeito.</p>
+                    <div class="store-product-price">R$ 95,00</div>
+                    <button class="store-btn-buy add-to-cart">Comprar</button>
+                </div>
+                
+                <div class="store-product-card" data-product-id="over-02" data-product-price="95.00">
+                    <img src="IMG/Oversatil/Oversized2.jpeg" alt="Oversized Estampada" class="store-product-image">
+                    <h3 class="store-product-name">Oversize Estampada</h3>
+                    <p class="store-product-description">100% algodão, tecido macio.</p>
+                    <div class="store-product-price">R$ 95,00</div>
+                    <button class="store-btn-buy add-to-cart">Comprar</button>
+                </div>
+
+                <div class="store-product-card" data-product-id="over-03" data-product-price="95.00">
+                    <img src="IMG/Oversatil/Oversized3.jpeg" alt="Oversized Adicional" class="store-product-image">
+                    <h3 class="store-product-name">Camiseta Oversize Adicional</h3>
+                    <p class="store-product-description">Estilo moderno e caimento perfeito.</p>
+                    <div class="store-product-price">R$ 95,00</div>
+                    <button class="store-btn-buy add-to-cart">Comprar</button>
+                </div>
+                
+                <div class="store-product-card" data-product-id="over-04" data-product-price="95.00">
+                    <img src="IMG/Oversatil/Oversized4.jpeg" alt="Oversized Estampada" class="store-product-image">
+                    <h3 class="store-product-name">Oversize Estampada Adicional</h3>
+                    <p class="store-product-description">100% algodão, tecido macio.</p>
+                    <div class="store-product-price">R$ 95,00</div>
+                    <button class="store-btn-buy add-to-cart">Comprar</button>
+                </div>
+                <div class="store-product-card" data-product-id="over-05" data-product-price="95.00">
+                    <img src="IMG/Oversatil/Oversized5.jpeg" alt="Oversized Estampada" class="store-product-image">
+                    <h3 class="store-product-name">Oversize Estampada Adicional</h3>
+                    <p class="store-product-description">100% algodão, tecido macio.</p>
+                    <div class="store-product-price">R$ 95,00</div>
+                    <button class="store-btn-buy add-to-cart">Comprar</button>
+                </div>
+                <div class="store-product-card" data-product-id="over-06" data-product-price="95.00">
+                    <img src="IMG/Oversatil/Oversized6.jpeg" alt="Oversized Estampada" class="store-product-image">
+                    <h3 class="store-product-name">Oversize Estampada Adicional</h3>
+                    <p class="store-product-description">100% algodão, tecido macio.</p>
+                    <div class="store-product-price">R$ 95,00</div>
+                    <button class="store-btn-buy add-to-cart">Comprar</button>
+                </div>
             </div>
         </section>
 
+        <section class="store-product-category" id="store-shorts">
+            <h2>Shorts</h2>
+            <div class="store-product-grid">
+                <div class="store-product-card" data-product-id="shorts-01" data-product-price="79.00">
+                    <img src="IMG/Indisponivel.png" alt="Shorts Tactel Liso" class="store-product-image">
+                    <h3 class="store-product-name">Shorts Tactel Liso</h3>
+                    <p class="store-product-description">Conforto e leveza para o dia a dia.</p>
+                    <div class="store-product-price">R$ 79,00</div> 
+                    <button class="store-btn-buy add-to-cart">Comprar</button>
+                </div>
+                
+                <div class="store-product-card" data-product-id="shorts-02" data-product-price="89.00">
+                    <img src="IMG/Indisponivel.png" alt="Shorts Sarja Esportivo" class="store-product-image">
+                    <h3 class="store-product-name">Shorts Sarja Esportivo</h3>
+                    <p class="store-product-description">Ideal para atividades físicas e lazer.</p>
+                    <div class="store-product-price">R$ 89,00</div>
+                    <button class="store-btn-buy add-to-cart">Comprar</button>
+                </div>
+            </div>
+        </section>
         <section class="store-product-category" id="store-polos">
     <h2>Camisetas Polo</h2>
     <div class="store-product-grid">
-        <!-- Camisetas Polo serão adicionadas via gestor -->
+        <div class="store-product-card" data-product-id="polo-01" data-product-price="109.98">
+            <img src="IMG/Camisa_Polo/Polo1.jpeg" alt="Camisa Polo" class="store-product-image">
+            <h3 class="store-product-name">Camiseta Polo</h3>
+            <p class="store-product-description">Estilo moderno e caimento perfeito.</p>
+            <div class="store-product-price">R$ 109,98</div>
+            <button class="store-btn-buy add-to-cart">Comprar</button>
+        </div>
+        <div class="store-product-card" data-product-id="polo-02" data-product-price="109.98">
+            <img src="IMG/Camisa_Polo/Polo2.jpeg" alt="Camisa Polo" class="store-product-image">
+            <h3 class="store-product-name">Camiseta Polo</h3>
+            <p class="store-product-description">Estilo moderno e caimento perfeito.</p>
+            <div class="store-product-price">R$ 109,98</div>
+            <button class="store-btn-buy add-to-cart">Comprar</button>
+        </div>
+        <div class="store-product-card" data-product-id="polo-03" data-product-price="109.98">
+            <img src="IMG/Camisa_Polo/Polo3.jpeg" alt="Camisa Polo" class="store-product-image">
+            <h3 class="store-product-name">Camiseta Polo</h3>
+            <p class="store-product-description">Estilo moderno e caimento perfeito.</p>
+            <div class="store-product-price">R$ 109,98</div>
+            <button class="store-btn-buy add-to-cart">Comprar</button>
+        </div>
+        <div class="store-product-card" data-product-id="polo-04" data-product-price="109.98">
+            <img src="IMG/Camisa_Polo/Polo4.jpeg" alt="Camisa Polo" class="store-product-image">
+            <h3 class="store-product-name">Camiseta Polo</h3>
+            <p class="store-product-description">Estilo moderno e caimento perfeito.</p>
+            <div class="store-product-price">R$ 109,98</div>
+            <button class="store-btn-buy add-to-cart">Comprar</button>
+        </div>
+        <div class="store-product-card" data-product-id="polo-05" data-product-price="109.98">
+            <img src="IMG/Camisa_Polo/Polo5.jpeg" alt="Camisa Polo" class="store-product-image">
+            <h3 class="store-product-name">Camiseta Polo</h3>
+            <p class="store-product-description">Estilo moderno e caimento perfeito.</p>
+            <div class="store-product-price">R$ 109,98</div>
+            <button class="store-btn-buy add-to-cart">Comprar</button>
+        </div>
+        <div class="store-product-card" data-product-id="polo-06" data-product-price="109.98">
+            <img src="IMG/Camisa_Polo/Polo6.jpeg" alt="Camisa Polo" class="store-product-image">
+            <h3 class="store-product-name">Camiseta Polo</h3>
+            <p class="store-product-description">Estilo moderno e caimento perfeito.</p>
+            <div class="store-product-price">R$ 109,98</div>
+            <button class="store-btn-buy add-to-cart">Comprar</button>
+        </div>
+        <div class="store-product-card" data-product-id="polo-07" data-product-price="109.98">
+            <img src="IMG/Camisa_Polo/Polo7.jpeg" alt="Camisa Polo" class="store-product-image">
+            <h3 class="store-product-name">Camiseta Polo</h3>
+            <p class="store-product-description">Estilo moderno e caimento perfeito.</p>
+            <div class="store-product-price">R$ 109,98</div>
+            <button class="store-btn-buy add-to-cart">Comprar</button>
+        </div>
+        <div class="store-product-card" data-product-id="polo-08" data-product-price="109.98">
+            <img src="IMG/Camisa_Polo/Polo8.jpeg" alt="Camisa Polo" class="store-product-image">
+            <h3 class="store-product-name">Camiseta Polo</h3>
+            <p class="store-product-description">Estilo moderno e caimento perfeito.</p>
+            <div class="store-product-price">R$ 109,98</div>
+            <button class="store-btn-buy add-to-cart">Comprar</button>
+        </div>
+        <div class="store-product-card" data-product-id="polo-09" data-product-price="109.98">
+            <img src="IMG/Camisa_Polo/Polo9.jpeg" alt="Camisa Polo" class="store-product-image">
+            <h3 class="store-product-name">Camiseta Polo</h3>
+            <p class="store-product-description">Estilo moderno e caimento perfeito.</p>
+            <div class="store-product-price">R$ 109,98</div>
+            <button class="store-btn-buy add-to-cart">Comprar</button>
+        </div>
+        <div class="store-product-card" data-product-id="polo-10" data-product-price="109.98">
+            <img src="IMG/Camisa_Polo/Polo10.jpeg" alt="Camisa Polo" class="store-product-image">
+            <h3 class="store-product-name">Camiseta Polo</h3>
+            <p class="store-product-description">Estilo moderno e caimento perfeito.</p>
+            <div class="store-product-price">R$ 109,98</div>
+            <button class="store-btn-buy add-to-cart">Comprar</button>
+        </div>
+        <div class="store-product-card" data-product-id="polo-11" data-product-price="109.98">
+            <img src="IMG/Camisa_Polo/Polo11.jpeg" alt="Camisa Polo" class="store-product-image">
+            <h3 class="store-product-name">Camiseta Polo</h3>
+            <p class="store-product-description">Estilo moderno e caimento perfeito.</p>
+            <div class="store-product-price">R$ 109,98</div>
+            <button class="store-btn-buy add-to-cart">Comprar</button>
+        </div>
+        <div class="store-product-card" data-product-id="polo-12" data-product-price="109.98">
+            <img src="IMG/Camisa_Polo/Polo12.jpeg" alt="Camisa Polo" class="store-product-image">
+            <h3 class="store-product-name">Camiseta Polo</h3>
+            <p class="store-product-description">Estilo moderno e caimento perfeito.</p>
+            <div class="store-product-price">R$ 109,98</div>
+            <button class="store-btn-buy add-to-cart">Comprar</button>
+        </div>
+        <div class="store-product-card" data-product-id="polo-13" data-product-price="109.98">
+            <img src="IMG/Camisa_Polo/Polo13.jpeg" alt="Camisa Polo" class="store-product-image">
+            <h3 class="store-product-name">Camiseta Polo</h3>
+            <p class="store-product-description">Estilo moderno e caimento perfeito.</p>
+            <div class="store-product-price">R$ 109,98</div>
+            <button class="store-btn-buy add-to-cart">Comprar</button>
+        </div>
+        <div class="store-product-card" data-product-id="polo-14" data-product-price="109.98">
+            <img src="IMG/Camisa_Polo/Polo14.jpeg" alt="Camisa Polo" class="store-product-image">
+            <h3 class="store-product-name">Camiseta Polo</h3>
+            <p class="store-product-description">Estilo moderno e caimento perfeito.</p>
+            <div class="store-product-price">R$ 109,98</div>
+            <button class="store-btn-buy add-to-cart">Comprar</button>
+        </div>
+        <div class="store-product-card" data-product-id="polo-15" data-product-price="109.98">
+            <img src="IMG/Camisa_Polo/Polo15.jpeg" alt="Camisa Polo" class="store-product-image">
+            <h3 class="store-product-name">Camiseta Polo</h3>
+            <p class="store-product-description">Estilo moderno e caimento perfeito.</p>
+            <div class="store-product-price">R$ 109,98</div>
+            <button class="store-btn-buy add-to-cart">Comprar</button>
+        </div>
+        <div class="store-product-card" data-product-id="polo-16" data-product-price="109.98">
+            <img src="IMG/Camisa_Polo/Polo16.jpeg" alt="Camisa Polo" class="store-product-image">
+            <h3 class="store-product-name">Camiseta Polo</h3>
+            <p class="store-product-description">Estilo moderno e caimento perfeito.</p>
+            <div class="store-product-price">R$ 109,98</div>
+            <button class="store-btn-buy add-to-cart">Comprar</button>
+        </div>
+        <div class="store-product-card" data-product-id="polo-17" data-product-price="109.98">
+            <img src="IMG/Camisa_Polo/Polo17.jpeg" alt="Camisa Polo" class="store-product-image">
+            <h3 class="store-product-name">Camiseta Polo</h3>
+            <p class="store-product-description">Estilo moderno e caimento perfeito.</p>
+            <div class="store-product-price">R$ 109,98</div>
+            <button class="store-btn-buy add-to-cart">Comprar</button>
+        </div>
+        <div class="store-product-card" data-product-id="polo-18" data-product-price="109.98">
+            <img src="IMG/Camisa_Polo/Polo18.jpeg" alt="Camisa Polo" class="store-product-image">
+            <h3 class="store-product-name">Camiseta Polo</h3>
+            <p class="store-product-description">Estilo moderno e caimento perfeito.</p>
+            <div class="store-product-price">R$ 109,98</div>
+            <button class="store-btn-buy add-to-cart">Comprar</button>
+        </div>
+        <div class="store-product-card" data-product-id="polo-19" data-product-price="109.98">
+            <img src="IMG/Camisa_Polo/Polo19.jpeg" alt="Camisa Polo" class="store-product-image">
+            <h3 class="store-product-name">Camiseta Polo</h3>
+            <p class="store-product-description">Estilo moderno e caimento perfeito.</p>
+            <div class="store-product-price">R$ 109,98</div>
+            <button class="store-btn-buy add-to-cart">Comprar</button>
+        </div>
+        <div class="store-product-card" data-product-id="polo-20" data-product-price="109.98">
+            <img src="IMG/Camisa_Polo/Polo20.jpeg" alt="Camisa Polo" class="store-product-image">
+            <h3 class="store-product-name">Camiseta Polo</h3>
+            <p class="store-product-description">Estilo moderno e caimento perfeito.</p>
+            <div class="store-product-price">R$ 109,98</div>
+            <button class="store-btn-buy add-to-cart">Comprar</button>
+        </div>
+        <div class="store-product-card" data-product-id="polo-21" data-product-price="109.98">
+            <img src="IMG/Camisa_Polo/Polo21.jpeg" alt="Camisa Polo" class="store-product-image">
+            <h3 class="store-product-name">Camiseta Polo</h3>
+            <p class="store-product-description">Estilo moderno e caimento perfeito.</p>
+            <div class="store-product-price">R$ 109,98</div>
+            <button class="store-btn-buy add-to-cart">Comprar</button>
+        </div>
+        <div class="store-product-card" data-product-id="polo-22" data-product-price="109.98">
+            <img src="IMG/Camisa_Polo/Polo22.jpeg" alt="Camisa Polo" class="store-product-image">
+            <h3 class="store-product-name">Camiseta Polo</h3>
+            <p class="store-product-description">Estilo moderno e caimento perfeito.</p>
+            <div class="store-product-price">R$ 109,98</div>
+            <button class="store-btn-buy add-to-cart">Comprar</button>
+        </div>
+        <div class="store-product-card" data-product-id="polo-23" data-product-price="109.98">
+            <img src="IMG/Camisa_Polo/Polo23.jpeg" alt="Camisa Polo" class="store-product-image">
+            <h3 class="store-product-name">Camiseta Polo</h3>
+            <p class="store-product-description">Estilo moderno e caimento perfeito.</p>
+            <div class="store-product-price">R$ 109,98</div>
+            <button class="store-btn-buy add-to-cart">Comprar</button>
+        </div>
+        <div class="store-product-card" data-product-id="polo-24" data-product-price="109.98">
+            <img src="IMG/Camisa_Polo/Polo24.jpeg" alt="Camisa Polo" class="store-product-image">
+            <h3 class="store-product-name">Camiseta Polo</h3>
+            <p class="store-product-description">Estilo moderno e caimento perfeito.</p>
+            <div class="store-product-price">R$ 109,98</div>
+            <button class="store-btn-buy add-to-cart">Comprar</button>
+        </div>
+        <div class="store-product-card" data-product-id="polo-25" data-product-price="109.98">
+            <img src="IMG/Camisa_Polo/Polo25.jpeg" alt="Camisa Polo" class="store-product-image">
+            <h3 class="store-product-name">Camiseta Polo</h3>
+            <p class="store-product-description">Estilo moderno e caimento perfeito.</p>
+            <div class="store-product-price">R$ 109,98</div>
+            <button class="store-btn-buy add-to-cart">Comprar</button>
+        </div>
+        <div class="store-product-card" data-product-id="polo-26" data-product-price="109.98">
+            <img src="IMG/Camisa_Polo/Polo26.jpeg" alt="Camisa Polo" class="store-product-image">
+            <h3 class="store-product-name">Camiseta Polo</h3>
+            <p class="store-product-description">Estilo moderno e caimento perfeito.</p>
+            <div class="store-product-price">R$ 109,98</div>
+            <button class="store-btn-buy add-to-cart">Comprar</button>
+        </div>
+        <div class="store-product-card" data-product-id="polo-27" data-product-price="109.98">
+            <img src="IMG/Camisa_Polo/Polo27.jpeg" alt="Camisa Polo" class="store-product-image">
+            <h3 class="store-product-name">Camiseta Polo</h3>
+            <p class="store-product-description">Estilo moderno e caimento perfeito.</p>
+            <div class="store-product-price">R$ 109,98</div>
+            <button class="store-btn-buy add-to-cart">Comprar</button>
+        </div>
+        <div class="store-product-card" data-product-id="polo-28" data-product-price="109.98">
+            <img src="IMG/Camisa_Polo/Polo28.jpeg" alt="Camisa Polo" class="store-product-image">
+            <h3 class="store-product-name">Camiseta Polo</h3>
+            <p class="store-product-description">Estilo moderno e caimento perfeito.</p>
+            <div class="store-product-price">R$ 109,98</div>
+            <button class="store-btn-buy add-to-cart">Comprar</button>
+        </div>
+        <div class="store-product-card" data-product-id="polo-29" data-product-price="109.98">
+            <img src="IMG/Camisa_Polo/Polo29.jpeg" alt="Camisa Polo" class="store-product-image">
+            <h3 class="store-product-name">Camiseta Polo</h3>
+            <p class="store-product-description">Estilo moderno e caimento perfeito.</p>
+            <div class="store-product-price">R$ 109,98</div>
+            <button class="store-btn-buy add-to-cart">Comprar</button>
+        </div>
+        <div class="store-product-card" data-product-id="polo-30" data-product-price="109.98">
+            <img src="IMG/Camisa_Polo/Polo30.jpeg" alt="Camisa Polo" class="store-product-image">
+            <h3 class="store-product-name">Camiseta Polo</h3>
+            <p class="store-product-description">Estilo moderno e caimento perfeito.</p>
+            <div class="store-product-price">R$ 109,98</div>
+            <button class="store-btn-buy add-to-cart">Comprar</button>
+        </div>
+        <div class="store-product-card" data-product-id="polo-31" data-product-price="109.98">
+            <img src="IMG/Camisa_Polo/Polo31.jpeg" alt="Camisa Polo" class="store-product-image">
+            <h3 class="store-product-name">Camiseta Polo</h3>
+            <p class="store-product-description">Estilo moderno e caimento perfeito.</p>
+            <div class="store-product-price">R$ 109,98</div>
+            <button class="store-btn-buy add-to-cart">Comprar</button>
+        </div>
+        <div class="store-product-card" data-product-id="polo-32" data-product-price="109.98">
+            <img src="IMG/Camisa_Polo/Polo32.jpeg" alt="Camisa Polo" class="store-product-image">
+            <h3 class="store-product-name">Camiseta Polo</h3>
+            <p class="store-product-description">Estilo moderno e caimento perfeito.</p>
+            <div class="store-product-price">R$ 109,98</div>
+            <button class="store-btn-buy add-to-cart">Comprar</button>
+        </div>
+        <div class="store-product-card" data-product-id="polo-33" data-product-price="109.98">
+            <img src="IMG/Camisa_Polo/Polo33.jpeg" alt="Camisa Polo" class="store-product-image">
+            <h3 class="store-product-name">Camiseta Polo</h3>
+            <p class="store-product-description">Estilo moderno e caimento perfeito.</p>
+            <div class="store-product-price">R$ 109,98</div>
+            <button class="store-btn-buy add-to-cart">Comprar</button>
+        </div>
+        <div class="store-product-card" data-product-id="polo-34" data-product-price="109.98">
+            <img src="IMG/Camisa_Polo/Polo34.jpeg" alt="Camisa Polo" class="store-product-image">
+            <h3 class="store-product-name">Camiseta Polo</h3>
+            <p class="store-product-description">Estilo moderno e caimento perfeito.</p>
+            <div class="store-product-price">R$ 109,98</div>
+            <button class="store-btn-buy add-to-cart">Comprar</button>
+        </div>
+        <div class="store-product-card" data-product-id="polo-35" data-product-price="109.98">
+            <img src="IMG/Camisa_Polo/Polo35.jpeg" alt="Camisa Polo" class="store-product-image">
+            <h3 class="store-product-name">Camiseta Polo</h3>
+            <p class="store-product-description">Estilo moderno e caimento perfeito.</p>
+            <div class="store-product-price">R$ 109,98</div>
+            <button class="store-btn-buy add-to-cart">Comprar</button>
+        </div>
+        <div class="store-product-card" data-product-id="polo-36" data-product-price="109.98">
+            <img src="IMG/Camisa_Polo/Polo36.jpeg" alt="Camisa Polo" class="store-product-image">
+            <h3 class="store-product-name">Camiseta Polo</h3>
+            <p class="store-product-description">Estilo moderno e caimento perfeito.</p>
+            <div class="store-product-price">R$ 109,98</div>
+            <button class="store-btn-buy add-to-cart">Comprar</button>
+        </div>
+        <div class="store-product-card" data-product-id="polo-37" data-product-price="109.98">
+            <img src="IMG/Camisa_Polo/Polo37.jpeg" alt="Camisa Polo" class="store-product-image">
+            <h3 class="store-product-name">Camiseta Polo</h3>
+            <p class="store-product-description">Estilo moderno e caimento perfeito.</p>
+            <div class="store-product-price">R$ 109,98</div>
+            <button class="store-btn-buy add-to-cart">Comprar</button>
+        </div>
+        <div class="store-product-card" data-product-id="polo-38" data-product-price="109.98">
+            <img src="IMG/Camisa_Polo/Polo38.jpeg" alt="Camisa Polo" class="store-product-image">
+            <h3 class="store-product-name">Camiseta Polo</h3>
+            <p class="store-product-description">Estilo moderno e caimento perfeito.</p>
+            <div class="store-product-price">R$ 109,98</div>
+            <button class="store-btn-buy add-to-cart">Comprar</button>
+        </div>
+        <div class="store-product-card" data-product-id="polo-39" data-product-price="109.98">
+            <img src="IMG/Camisa_Polo/Polo39.jpeg" alt="Camisa Polo" class="store-product-image">
+            <h3 class="store-product-name">Camiseta Polo</h3>
+            <p class="store-product-description">Estilo moderno e caimento perfeito.</p>
+            <div class="store-product-price">R$ 109,98</div>
+            <button class="store-btn-buy add-to-cart">Comprar</button>
+        </div>
+        <div class="store-product-card" data-product-id="polo-40" data-product-price="109.98">
+            <img src="IMG/Camisa_Polo/Polo40.jpeg" alt="Camisa Polo" class="store-product-image">
+            <h3 class="store-product-name">Camiseta Polo</h3>
+            <p class="store-product-description">Estilo moderno e caimento perfeito.</p>
+            <div class="store-product-price">R$ 109,98</div>
+            <button class="store-btn-buy add-to-cart">Comprar</button>
+        </div>
+        <div class="store-product-card" data-product-id="polo-41" data-product-price="109.98">
+            <img src="IMG/Camisa_Polo/Polo41.jpeg" alt="Camisa Polo" class="store-product-image">
+            <h3 class="store-product-name">Camiseta Polo</h3>
+            <p class="store-product-description">Estilo moderno e caimento perfeito.</p>
+            <div class="store-product-price">R$ 109,98</div>
+            <button class="store-btn-buy add-to-cart">Comprar</button>
+        </div>
+        <div class="store-product-card" data-product-id="polo-42" data-product-price="109.98">
+            <img src="IMG/Camisa_Polo/Polo42.jpeg" alt="Camisa Polo" class="store-product-image">
+            <h3 class="store-product-name">Camiseta Polo</h3>
+            <p class="store-product-description">Estilo moderno e caimento perfeito.</p>
+            <div class="store-product-price">R$ 109,98</div>
+            <button class="store-btn-buy add-to-cart">Comprar</button>
+        </div>
     </div>
     </section>
 
        <section class="store-product-category" id="store-peruana">
-    <h2>Camisas Marca Peruana</h2>
-    <div class="store-product-grid"></div>
-    </section>
+    <h2>Camisas Marca Peruana (R$ 85,00)</h2>
+    <div class="store-product-grid">
+        <div class="store-product-card" data-product-id="peruana-01" data-product-price="85.00">
+            <img src="IMG/Camisa_Polo/Polo1.jpeg" alt="Polo Peruana Pima" class="store-product-image">
+            <h3 class="store-product-name">Polo Peruana Pima</h3>
+            <p class="store-product-description">Melhor algodão do mundo, toque suave.</p>
+            <div class="store-product-price">R$ 85,00</div>
+            <button class="store-btn-buy add-to-cart">Comprar</button>
+        </div>
+        <div class="store-product-card" data-product-id="peruana-02" data-product-price="85.00">
+            <img src="IMG/Camisa_Polo/Polo2.jpeg" alt="T-Shirt Peruana Básica" class="store-product-image">
+            <h3 class="store-product-name">T-Shirt Peruana Básica</h3>
+            <p class="store-product-description">Qualidade superior e durabilidade.</p>
+            <div class="store-product-price">R$ 85,00</div>
+            <button class="store-btn-buy add-to-cart">Comprar</button>
+        </div>
+        <div class="store-product-card" data-product-id="peruana-03" data-product-price="85.00">
+            <img src="IMG/Camisa_Polo/Polo3.jpeg" alt="Polo Peruana Pima" class="store-product-image">
+            <h3 class="store-product-name">Polo Peruana Pima</h3>
+            <p class="store-product-description">Melhor algodão do mundo, toque suave.</p>
+            <div class="store-product-price">R$ 85,00</div>
+            <button class="store-btn-buy add-to-cart">Comprar</button>
+        </div>
+        <div class="store-product-card" data-product-id="peruana-04" data-product-price="85.00">
+            <img src="IMG/Camisa_Polo/Polo4.jpeg" alt="Polo Peruana Pima" class="store-product-image">
+            <h3 class="store-product-name">Polo Peruana Pima</h3>
+            <p class="store-product-description">Melhor algodão do mundo, toque suave.</p>
+            <div class="store-product-price">R$ 85,00</div>
+            <button class="store-btn-buy add-to-cart">Comprar</button>
+        </div>
+        <div class="store-product-card" data-product-id="peruana-05" data-product-price="85.00">
+            <img src="IMG/Camisa_Polo/Polo5.jpeg" alt="Polo Peruana Pima" class="store-product-image">
+            <h3 class="store-product-name">Polo Peruana Pima</h3>
+            <p class="store-product-description">Melhor algodão do mundo, toque suave.</p>
+            <div class="store-product-price">R$ 85,00</div>
+            <button class="store-btn-buy add-to-cart">Comprar</button>
+        </div>
+        <div class="store-product-card" data-product-id="peruana-06" data-product-price="85.00">
+            <img src="IMG/Camisa_Polo/Polo6.jpeg" alt="Polo Peruana Pima" class="store-product-image">
+            <h3 class="store-product-name">Polo Peruana Pima</h3>
+            <p class="store-product-description">Melhor algodão do mundo, toque suave.</p>
+            <div class="store-product-price">R$ 85,00</div>
+            <button class="store-btn-buy add-to-cart">Comprar</button>
+        </div>
+        <div class="store-product-card" data-product-id="peruana-07" data-product-price="85.00">
+            <img src="IMG/Camisa_Polo/Polo7.jpeg" alt="Polo Peruana Pima" class="store-product-image">
+            <h3 class="store-product-name">Polo Peruana Pima</h3>
+            <p class="store-product-description">Melhor algodão do mundo, toque suave.</p>
+            <div class="store-product-price">R$ 85,00</div>
+            <button class="store-btn-buy add-to-cart">Comprar</button>
+        </div>
+        <div class="store-product-card" data-product-id="peruana-08" data-product-price="85.00">
+            <img src="IMG/Camisa_Polo/Polo8.jpeg" alt="Polo Peruana Pima" class="store-product-image">
+            <h3 class="store-product-name">Polo Peruana Pima</h3>
+            <p class="store-product-description">Melhor algodão do mundo, toque suave.</p>
+            <div class="store-product-price">R$ 85,00</div>
+            <button class="store-btn-buy add-to-cart">Comprar</button>
+        </div>
+        <div class="store-product-card" data-product-id="peruana-09" data-product-price="85.00">
+            <img src="IMG/Camisa_Polo/Polo9.jpeg" alt="Polo Peruana Pima" class="store-product-image">
+            <h3 class="store-product-name">Polo Peruana Pima</h3>
+            <p class="store-product-description">Melhor algodão do mundo, toque suave.</p>
+            <div class="store-product-price">R$ 85,00</div>
+            <button class="store-btn-buy add-to-cart">Comprar</button>
+        </div>
+        <div class="store-product-card" data-product-id="peruana-10" data-product-price="85.00">
+            <img src="IMG/Camisa_Polo/Polo10.jpeg" alt="Polo Peruana Pima" class="store-product-image">
+            <h3 class="store-product-name">Polo Peruana Pima</h3>
+            <p class="store-product-description">Melhor algodão do mundo, toque suave.</p>
+            <div class="store-product-price">R$ 85,00</div>
+            <button class="store-btn-buy add-to-cart">Comprar</button>
+        </div>
+        <div class="store-product-card" data-product-id="peruana-11" data-product-price="85.00">
+            <img src="IMG/Camisa_Polo/Polo11.jpeg" alt="Polo Peruana Pima" class="store-product-image">
+            <h3 class="store-product-name">Polo Peruana Pima</h3>
+            <p class="store-product-description">Melhor algodão do mundo, toque suave.</p>
+            <div class="store-product-price">R$ 85,00</div>
+            <button class="store-btn-buy add-to-cart">Comprar</button>
+        </div>
+        <div class="store-product-card" data-product-id="peruana-12" data-product-price="85.00">
+            <img src="IMG/Camisa_Polo/Polo12.jpeg" alt="Polo Peruana Pima" class="store-product-image">
+            <h3 class="store-product-name">Polo Peruana Pima</h3>
+            <p class="store-product-description">Melhor algodão do mundo, toque suave.</p>
+            <div class="store-product-price">R$ 85,00</div>
+            <button class="store-btn-buy add-to-cart">Comprar</button>
+        </div>
+        <div class="store-product-card" data-product-id="peruana-13" data-product-price="85.00">
+            <img src="IMG/Camisa_Polo/Polo13.jpeg" alt="Polo Peruana Pima" class="store-product-image">
+            <h3 class="store-product-name">Polo Peruana Pima</h3>
+            <p class="store-product-description">Melhor algodão do mundo, toque suave.</p>
+            <div class="store-product-price">R$ 85,00</div>
+            <button class="store-btn-buy add-to-cart">Comprar</button>
+        </div>
+        <div class="store-product-card" data-product-id="peruana-14" data-product-price="85.00">
+            <img src="IMG/Camisa_Polo/Polo14.jpeg" alt="Polo Peruana Pima" class="store-product-image">
+            <h3 class="store-product-name">Polo Peruana Pima</h3>
+            <p class="store-product-description">Melhor algodão do mundo, toque suave.</p>
+            <div class="store-product-price">R$ 85,00</div>
+            <button class="store-btn-buy add-to-cart">Comprar</button>
+        </div>
+        <div class="store-product-card" data-product-id="peruana-15" data-product-price="85.00">
+            <img src="IMG/Camisa_Polo/Polo15.jpeg" alt="Polo Peruana Pima" class="store-product-image">
+            <h3 class="store-product-name">Polo Peruana Pima</h3>
+            <p class="store-product-description">Melhor algodão do mundo, toque suave.</p>
+            <div class="store-product-price">R$ 85,00</div>
+            <button class="store-btn-buy add-to-cart">Comprar</button>
+        </div>
+        <div class="store-product-card" data-product-id="peruana-16" data-product-price="85.00">
+            <img src="IMG/Camisa_Polo/Polo16.jpeg" alt="Polo Peruana Pima" class="store-product-image">
+            <h3 class="store-product-name">Polo Peruana Pima</h3>
+            <p class="store-product-description">Melhor algodão do mundo, toque suave.</p>
+            <div class="store-product-price">R$ 85,00</div>
+            <button class="store-btn-buy add-to-cart">Comprar</button>
+        </div>
+        <div class="store-product-card" data-product-id="peruana-17" data-product-price="85.00">
+            <img src="IMG/Camisa_Polo/Polo17.jpeg" alt="Polo Peruana Pima" class="store-product-image">
+            <h3 class="store-product-name">Polo Peruana Pima</h3>
+            <p class="store-product-description">Melhor algodão do mundo, toque suave.</p>
+            <div class="store-product-price">R$ 85,00</div>
+            <button class="store-btn-buy add-to-cart">Comprar</button>
+        </div>
+        <div class="store-product-card" data-product-id="peruana-18" data-product-price="85.00">
+            <img src="IMG/Camisa_Polo/Polo18.jpeg" alt="Polo Peruana Pima" class="store-product-image">
+            <h3 class="store-product-name">Polo Peruana Pima</h3>
+            <p class="store-product-description">Melhor algodão do mundo, toque suave.</p>
+            <div class="store-product-price">R$ 85,00</div>
+            <button class="store-btn-buy add-to-cart">Comprar</button>
+        </div>
+        <div class="store-product-card" data-product-id="peruana-19" data-product-price="85.00">
+            <img src="IMG/Camisa_Polo/Polo19.jpeg" alt="Polo Peruana Pima" class="store-product-image">
+            <h3 class="store-product-name">Polo Peruana Pima</h3>
+            <p class="store-product-description">Melhor algodão do mundo, toque suave.</p>
+            <div class="store-product-price">R$ 85,00</div>
+            <button class="store-btn-buy add-to-cart">Comprar</button>
+        </div>
+        <div class="store-product-card" data-product-id="peruana-20" data-product-price="85.00">
+            <img src="IMG/Camisa_Polo/Polo20.jpeg" alt="Polo Peruana Pima" class="store-product-image">
+            <h3 class="store-product-name">Polo Peruana Pima</h3>
+            <p class="store-product-description">Melhor algodão do mundo, toque suave.</p>
+            <div class="store-product-price">R$ 85,00</div>
+            <button class="store-btn-buy add-to-cart">Comprar</button>
+        </div>
+        <div class="store-product-card" data-product-id="peruana-21" data-product-price="85.00">
+            <img src="IMG/Camisa_Polo/Polo21.jpeg" alt="Polo Peruana Pima" class="store-product-image">
+            <h3 class="store-product-name">Polo Peruana Pima</h3>
+            <p class="store-product-description">Melhor algodão do mundo, toque suave.</p>
+            <div class="store-product-price">R$ 85,00</div>
+            <button class="store-btn-buy add-to-cart">Comprar</button>
+        </div>
+        <div class="store-product-card" data-product-id="peruana-22" data-product-price="85.00">
+            <img src="IMG/Camisa_Polo/Polo22.jpeg" alt="Polo Peruana Pima" class="store-product-image">
+            <h3 class="store-product-name">Polo Peruana Pima</h3>
+            <p class="store-product-description">Melhor algodão do mundo, toque suave.</p>
+            <div class="store-product-price">R$ 85,00</div>
+            <button class="store-btn-buy add-to-cart">Comprar</button>
+        </div>
+        <div class="store-product-card" data-product-id="peruana-23" data-product-price="85.00">
+            <img src="IMG/Camisa_Polo/Polo23.jpeg" alt="Polo Peruana Pima" class="store-product-image">
+            <h3 class="store-product-name">Polo Peruana Pima</h3>
+            <p class="store-product-description">Melhor algodão do mundo, toque suave.</p>
+            <div class="store-product-price">R$ 85,00</div>
+            <button class="store-btn-buy add-to-cart">Comprar</button>
+        </div>
+        <div class="store-product-card" data-product-id="peruana-24" data-product-price="85.00">
+            <img src="IMG/Camisa_Polo/Polo24.jpeg" alt="Polo Peruana Pima" class="store-product-image">
+            <h3 class="store-product-name">Polo Peruana Pima</h3>
+            <p class="store-product-description">Melhor algodão do mundo, toque suave.</p>
+            <div class="store-product-price">R$ 85,00</div>
+            <button class="store-btn-buy add-to-cart">Comprar</button>
+        </div>
+    </div>
+</section>
 
     </main>
     
@@ -87,14 +864,263 @@
         </div>
     </div>
     
-    <!-- Backdrop/Overlay para fechar o carrinho ao clicar fora -->
-    <div id="cart-backdrop" class="cart-backdrop"></div>
-    
     <script src="javascript.js"></script>
+    <script>
+        // Admin inline price editor for camisa.html
+        (function(){
+            const ADMIN_PASSWORD = '070301';
+            const PRODUCTS_KEY = 'gm_products_v1';
+            let originalPrices = new Map();
+
+            function normalizePriceStr(str){
+                if(!str) return '0.00';
+                // remove currency symbols and spaces
+                let s = String(str).replace(/R\$|\s/g,'').replace(/\./g,'');
+                s = s.replace(',', '.');
+                const n = parseFloat(s);
+                return isNaN(n) ? '0.00' : n.toFixed(2);
+            }
+
+            function enterEditMode(){
+                const cards = document.querySelectorAll('.store-product-card');
+                if(!cards || !cards.length) return alert('Nenhum produto encontrado para editar.');
+                // save originals
+                originalPrices.clear();
+                cards.forEach(card=>{
+                    const priceEl = card.querySelector('.store-product-price');
+                    if(!priceEl) return;
+                    const raw = priceEl.textContent.trim();
+                    originalPrices.set(card, raw);
+                    // replace with input
+                    const current = raw.replace(/[^0-9,\.]/g,'');
+                    const input = document.createElement('input');
+                    input.type = 'text';
+                    input.value = current.replace('.',',');
+                    input.className = 'admin-price-input';
+                    input.style.width = '90%';
+                    input.style.padding = '6px';
+                    input.style.borderRadius = '4px';
+                    input.style.border = '1px solid #999';
+                    priceEl.innerHTML = '';
+                    priceEl.appendChild(input);
+                });
+                showEditToolbar();
+            }
+
+            function exitEditMode(revert=false){
+                const cards = document.querySelectorAll('.store-product-card');
+                cards.forEach(card=>{
+                    const priceEl = card.querySelector('.store-product-price');
+                    if(!priceEl) return;
+                    const input = priceEl.querySelector('.admin-price-input');
+                    if(input){
+                        if(revert){
+                            priceEl.textContent = originalPrices.get(card) || input.value;
+                        }else{
+                            // keep current text as already updated
+                            // ensure formatting
+                            const v = input.value || '0';
+                            const norm = normalizePriceStr(v);
+                            priceEl.textContent = 'R$ ' + norm.replace('.',',');
+                        }
+                    }
+                });
+                removeEditToolbar();
+            }
+
+            function showEditToolbar(){
+                if(document.getElementById('admin-edit-toolbar')) return;
+                const bar = document.createElement('div');
+                bar.id = 'admin-edit-toolbar';
+                bar.style.position = 'fixed';
+                bar.style.right = '12px';
+                bar.style.top = '80px';
+                bar.style.zIndex = '9999';
+                bar.style.background = '#fff';
+                bar.style.border = '1px solid #ddd';
+                bar.style.padding = '8px';
+                bar.style.borderRadius = '8px';
+                bar.style.boxShadow = '0 2px 8px rgba(0,0,0,0.12)';
+
+                const save = document.createElement('button');
+                save.textContent = 'Salvar preços';
+                save.style.marginRight = '6px';
+                save.onclick = saveEdits;
+
+                const cancel = document.createElement('button');
+                cancel.textContent = 'Cancelar';
+                cancel.onclick = ()=>{ exitEditMode(true); };
+
+                bar.appendChild(save);
+                bar.appendChild(cancel);
+                document.body.appendChild(bar);
+            }
+
+            function removeEditToolbar(){
+                const el = document.getElementById('admin-edit-toolbar');
+                if(el) el.remove();
+            }
+
+            function saveEdits(){
+                const cards = document.querySelectorAll('.store-product-card');
+                const updated = [];
+                cards.forEach(card=>{
+                    const id = card.dataset.productId || card.getAttribute('data-product-id') || ('p_'+Math.random().toString(36).slice(2,8));
+                    const nameEl = card.querySelector('.store-product-name');
+                    const descEl = card.querySelector('.store-product-description');
+                    const imgEl = card.querySelector('.store-product-image');
+                    const priceEl = card.querySelector('.store-product-price');
+                    const input = priceEl ? priceEl.querySelector('.admin-price-input') : null;
+                    const raw = input ? input.value : (priceEl ? priceEl.textContent : '0');
+                    const norm = normalizePriceStr(raw);
+                    // update DOM
+                    priceEl.textContent = 'R$ ' + norm.replace('.',',');
+                    card.dataset.productPrice = norm;
+                    const categoryEl = card.closest('.store-product-category');
+                    let category = categoryEl ? (categoryEl.querySelector('h2') ? categoryEl.querySelector('h2').textContent : '') : '';
+                    // remove parenthetical price info from category title if present
+                    category = category.replace(/\(.*\)/,'').trim();
+                    updated.push({
+                        id: String(id),
+                        name: nameEl ? nameEl.textContent.trim() : '',
+                        description: descEl ? descEl.textContent.trim() : '',
+                        price: norm,
+                        category: category || 'Loja',
+                        image: imgEl ? imgEl.src : ''
+                    });
+                });
+
+                // merge with existing managed products if any
+                let managed = [];
+                try{ managed = JSON.parse(localStorage.getItem(PRODUCTS_KEY) || '[]') || []; }catch(e){ managed = []; }
+                const managedById = {};
+                managed.forEach(p=>{ if(p && p.id) managedById[p.id]=p; });
+                // apply updates: if id exists in managed -> update price (and other fields), else add
+                updated.forEach(u=>{
+                    if(managedById[u.id]){
+                        managedById[u.id].price = u.price;
+                        managedById[u.id].name = u.name;
+                        managedById[u.id].description = u.description;
+                        managedById[u.id].category = u.category;
+                        managedById[u.id].image = u.image;
+                    }else{
+                        managed.push(u);
+                    }
+                });
+                // write back
+                try{ localStorage.setItem(PRODUCTS_KEY, JSON.stringify(managed)); }catch(e){ console.error(e); alert('Erro ao salvar no localStorage: ' + e.message); return; }
+                removeEditToolbar();
+                alert('Preços salvos. A página foi atualizada.');
+                // reload to allow dynamic renderer to take effect (if present)
+                setTimeout(()=>location.reload(), 400);
+            }
+
+            // attach button
+            const btn = document.getElementById('admin-edit-btn');
+            if(btn){
+                btn.addEventListener('click', (e)=>{
+                    // prevent following the href so we can offer inline edit first
+                    try{ e.preventDefault(); }catch(ex){}
+                    const pw = prompt('Senha de gestor:');
+                    if(pw === ADMIN_PASSWORD){
+                        enterEditMode();
+                        return;
+                    }
+                    const go = confirm('Senha incorreta. Deseja abrir a Área do Gestor (admin.html)?');
+                    if(go){ window.location.href = 'admin.html'; }
+                });
+            }
+
+            // allow Escape to cancel
+            document.addEventListener('keydown', function(e){ if(e.key === 'Escape'){ exitEditMode(true); } });
+        })();
+    </script>
+        <script>
+            // If admin has products saved in localStorage use them to render the store
+            (function(){
+                const KEY = 'gm_products_v1';
+                function readProducts(){ try{ return JSON.parse(localStorage.getItem(KEY) || '[]') || []; }catch(e){ return []; } }
+                function escapeHtml(s){ if(!s) return ''; return String(s).replace(/[&<>"']/g, c=>({ '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;' })[c]); }
+                const products = readProducts();
+                if(!products || !products.length) return; // keep hardcoded markup
+                const container = document.querySelector('.store-container');
+                if(!container) return;
+                // group by category
+                const groups = {};
+                products.forEach(p=>{ const cat = (p.category||'Loja'); if(!groups[cat]) groups[cat]=[]; groups[cat].push(p); });
+                let out = '';
+                for(const cat of Object.keys(groups)){
+                    const items = groups[cat];
+                    out += `<section class="store-product-category"><h2>${escapeHtml(cat)}</h2><div class="store-product-grid">`;
+                    items.forEach(p=>{
+                        const price = (Number(p.price)||0).toFixed(2);
+                        const img = p.image || 'IMG/Indisponivel.png';
+                        out += `
+                            <div class="store-product-card" data-product-id="${escapeHtml(p.id)}" data-product-price="${price}">
+                                <img src="${img}" alt="${escapeHtml(p.name)}" class="store-product-image">
+                                <h3 class="store-product-name">${escapeHtml(p.name)}</h3>
+                                <p class="store-product-description">${escapeHtml(p.description||'')}</p>
+                                <div class="store-product-price">R$ ${price.replace('.',',')}</div>
+                                <button class="store-btn-buy add-to-cart">Comprar</button>
+                            </div>`;
+                    });
+                    out += '</div></section>';
+                }
+                container.innerHTML = out;
+            })();
+        </script>
+    <script>
+        // If this page is embedded in an iframe (Encomenda), allow selecting a product
+        (function(){
+            function sendProductFromCard(card, qty){
+                if(!card) return;
+                const id = card.dataset.productId || card.getAttribute('data-product-id') || null;
+                const price = parseFloat(card.dataset.productPrice || card.getAttribute('data-product-price') || 0) || 0;
+                const nameEl = card.querySelector('.store-product-name');
+                const imgEl = card.querySelector('.store-product-image');
+                const product = {
+                    id: id,
+                    name: nameEl ? nameEl.textContent.trim() : '',
+                    price: price,
+                    image: imgEl ? imgEl.src : ''
+                };
+                if(window.parent && window.parent !== window){
+                    window.parent.postMessage({ type: 'add-product', product: product, qty: qty||1 }, '*');
+                }
+            }
+
+            // Use event delegation so clicks added dynamically are captured
+            document.addEventListener('click', function(e){
+                const btn = e.target.closest('.add-to-cart');
+                if(!btn) return;
+                const card = btn.closest('.store-product-card');
+                // if user clicked the buy button normally (not inside iframe), you may still want to add to a local cart - we only send message when embedded
+                try{
+                    sendProductFromCard(card, 1);
+                    // small visual feedback when inside iframe
+                    if(window.parent && window.parent !== window){
+                        btn.classList.add('just-sent');
+                        setTimeout(()=>btn.classList.remove('just-sent'), 700);
+                    }
+                }catch(err){ console.error(err); }
+            }, false);
+        })();
+    </script>
 
     <!-- Botão flutuante para abrir o gestor -->
     <button id="open-admin-btn" style="position: fixed; bottom: 20px; right: 20px; z-index: 8887; width: 60px; height: 60px; border-radius: 50%; background: #ffffff; color: #000; border: none; cursor: pointer; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 12px rgba(0,0,0,0.3); transition: all 0.3s ease; overflow: hidden;" title="Área do Gestor">
         <img src="IMG/Untitled Project (9).png" alt="Logo GM" style="width: 85%; height: 85%; object-fit: contain; border-radius: 50%;">
     </button>
+
+    <script>
+        // Gestor Panel Controller - Redirect to admin.html
+        (function(){
+            const openBtn = document.getElementById('open-admin-btn');
+            
+            openBtn.addEventListener('click', () => {
+                window.location.href = 'admin.html';
+            });
+        })();
+    </script>
 </body>
 </html>
