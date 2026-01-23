@@ -300,6 +300,8 @@ if (checkoutButton) {
         saveCart();
         renderCart();
         if (cartContainer) cartContainer.classList.remove('open');
+        const backdrop = document.getElementById('cart-backdrop');
+        if (backdrop) backdrop.classList.remove('open');
     });
 }
 
@@ -309,12 +311,25 @@ if (cartIcon && cartContainer && closeCartBtn) {
     cartIcon.addEventListener('click', (event) => {
         event.preventDefault();
         cartContainer.classList.add('open');
+        const backdrop = document.getElementById('cart-backdrop');
+        if (backdrop) backdrop.classList.add('open');
     });
 
     // Fechar a barra lateral
     closeCartBtn.addEventListener('click', () => {
         cartContainer.classList.remove('open');
+        const backdrop = document.getElementById('cart-backdrop');
+        if (backdrop) backdrop.classList.remove('open');
     });
+    
+    // Fechar ao clicar no backdrop
+    const backdrop = document.getElementById('cart-backdrop');
+    if (backdrop) {
+        backdrop.addEventListener('click', () => {
+            cartContainer.classList.remove('open');
+            backdrop.classList.remove('open');
+        });
+    }
 }
 
 // Show/hide delivery address input when fulfillment type changes
@@ -403,6 +418,8 @@ document.addEventListener('DOMContentLoaded', () => {
             alert(`✅ "${productName}" adicionado!`);
             if (cartContainer) {
                 cartContainer.classList.add('open');
+                const backdrop = document.getElementById('cart-backdrop');
+                if (backdrop) backdrop.classList.add('open');
             }
         });
     });
